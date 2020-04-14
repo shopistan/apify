@@ -1,0 +1,253 @@
+<div class="container">
+  <div class="input-group col-12  app-content">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"
+        ><i class="fa fa-pencil"></i
+      ></span>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Flow Name"
+      aria-label="Flow Name"
+      aria-describedby="basic-addon1"
+      ng-model="obj.name"
+    />
+  </div>
+  <div class="col-12" style="max-height: 80vh;">
+    <div class=" app-content card icon1" style="border:2px solid #ecf0f1;">
+      <div class="card-header media d-flex align-items-center">
+        <div
+          class="icon icon-shape rounded-circle text-white"
+          style="height:2rem; width:2rem; background-color:#499df3"
+        >
+          <i class="fa fa-assistive-listening-systems"></i>
+        </div>
+        <div class="media-body ml-2">
+          <strong class="text-muted">TRIGGER</strong>
+        </div>
+        <button
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#triggerCollapse"
+          aria-expanded="true"
+          aria-controls="triggerCollapse"
+        >
+          <i class="fa fa-bars fa-lg"></i>
+        </button>
+      </div>
+      <div
+        class="card-body collapse"
+        ng-class="{'show':type=='trigger'}"
+        id="triggerCollapse"
+      >
+        <a
+          ui-sref="editor:trigger:app({id:app_id, type:'trigger'})"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:trigger:app')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-tv-2"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Application</strong>
+          </div>
+        </a>
+        <a
+          ui-sref="editor:trigger:method({id:app_id, type:'trigger'})"
+          ng-disabled="application.peerTriggerApplication==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:trigger:method')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-send"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Choose Trigger</strong>
+          </div>
+        </a>
+        <a
+          ng-if="triggerOptions.auth > 0"
+          ui-sref="editor:trigger:auth({id:app_id, type:'trigger'})"
+          ng-disabled="application.peerTrigger==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:trigger:auth')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-circle-08"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Choose Account</strong>
+          </div>
+        </a>
+        <a
+          ng-if="getPopeLength(triggerOptions.urlBasic) > 0 || true"
+          ui-sref="editor:trigger:fields({id:app_id, type:'trigger'})"
+          ng-disabled="(application.peerTriggerApplication == null) || application.peerTrigger == null || triggerOptions.auth != 0 && application.triggerToken==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:trigger:fields')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-bullet-list-67"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Edit Options</strong>
+          </div>
+        </a>
+        <a
+          ui-sref="editor:trigger:sample({id:app_id, type:'trigger'})"
+          ng-disabled="application.peerTriggerUrl==''"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:trigger:sample')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="fa fa-flask"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Test Trigger</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="center-app mid">
+      <a
+        ui-sref="editor:index({id: app_id})"
+        class="icon icon-shape rounded-circle text-white"
+        style="background:#bdc3c7"
+      >
+        <i class="fa fa-filter"></i>
+      </a>
+    </div>
+
+    <!-- ACTION -->
+    <div class=" app-content card icon1" style="border:2px solid #ecf0f1;">
+      <div class="card-header media d-flex align-items-center">
+        <div
+          class="icon icon-shape rounded-circle text-white"
+          style="height:2rem; width:2rem; background-color:#499df3"
+        >
+          <i class="fa fa-bolt"></i>
+        </div>
+        <div class="media-body ml-2">
+          <strong class="text-muted">ACTIONS</strong>
+        </div>
+        <button
+          ng-disabled="application.triggerResponse==null"
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#actionCollapse"
+          aria-expanded="true"
+          aria-controls="actionCollapse"
+        >
+          <i class="fa fa-bars fa-lg"></i>
+        </button>
+      </div>
+      <div
+        class="card-body collapse"
+        ng-class="{'show':type=='action'}"
+        id="actionCollapse"
+      >
+        <a
+          ui-sref="editor:action:app({id:app_id, type:'action'})"
+          ng-disabled="application.triggerResponse==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:action:app')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-tv-2"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Application</strong>
+          </div>
+        </a>
+        <a
+          ui-sref="editor:action:method({id:app_id, type:'action'})"
+          ng-disabled="application.peerActionApplication==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:action:method')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-send"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Choose Action</strong>
+          </div>
+        </a>
+        <a
+          ng-if="actionOptions.auth > 0"
+          ui-sref="editor:action:auth({id:app_id, type:'action'})"
+          ng-disabled="application.peerAction==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:action:auth')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-circle-08"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Choose Account</strong>
+          </div>
+        </a>
+        <a
+          ng-if="getPopeLength(actionOptions.urlBasic) > 0 || true"
+          ui-sref="editor:action:fields({id:app_id, type:'action'})"
+          ng-disabled="(application.peerActionApplication == null) || application.peerAction == null || actionOptions.auth != 0 && application.actionToken==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:action:fields')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="ni ni-bullet-list-67"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Edit Options</strong>
+          </div>
+        </a>
+        <a
+          ui-sref="editor:action:sample({id:app_id, type:'action'})"
+          ng-disabled="application.peerActionUrl=='' || application.actionMapping==null"
+          class="media d-flex align-items-center side-nav"
+          ng-class="{activex: $state.includes('editor:action:sample')}"
+        >
+          <div
+            class="icon icon-shape bg-secondary rounded-circle text-muted"
+            style="height:2rem; width:2rem"
+          >
+            <i class="fa fa-flask"></i>
+          </div>
+          <div class="media-body ml-3">
+            <strong class="text-muted">Test Action</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="row" ng-init="init()">
+  <div
+    class="col-sm-4 header-settings"
+    ng-include="'./app/partials/editor/header.html'"
+  ></div>
+  <div class="col-sm-8" ng-init="get_all_apps()">
+    <div class="container">
+      <div class="shadow card app-content ng-scope" ng-init="new_app_init()">
+        <div class="justify-content-center card-header">
+          <div class="col-sm-6">
+            <h5>About flow</h5>
+          </div>
+          <div class="col-sm-6 text-lg-right align-self-lg-center">
+            <!-- <button class="btn btn-outline-primary" ui-sref="developer:new_app">New Webpeer App</button> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 center-app">
+              <h1 class="display-1" ng-if="obj.complete">
+                <i class="fa fa-check-circle text-success"></i>
+              </h1>
+              <h3 class="text-muted" ng-if="obj.complete">
+                Awesome! Your Flow is completed.
+              </h3>
+
+              <h1 class="display-1" ng-if="!obj.complete">
+                <i class="fa fa-times-circle text-warning"></i>
+              </h1>
+              <h3 class="text-muted" ng-if="!obj.complete">
+                Hold on! Your Flow is not completed yet.
+              </h3>
+
+              <strong class="heading text-light"
+                >your flow is &nbsp;
+                <label class="custom-toggle" style="margin: -7px 0;">
+                  <input
+                    type="checkbox"
+                    class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                    ng-disabled="!obj.complete"
+                    ng-model="obj.active"
+                  />
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+                <br /><br />
+              </strong>
+              <p style="width:70%">
+                While on, this Flow will automagically check for your
+                {{ application.name }} {{ application.peerTrigger.name }} every
+                <b><i class="fa fa-clock-o"></i> 5 minutes.</b>
+              </p>
+            </div>
+          </div>
+          <div class="container">
+            <hr />
+            <button
+              class="btn btn-outline-success btn-sm "
+              ui-sref="user:peers"
+            >
+              See it in dashboard
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm pull-right"
+              ng-click="continue(obj, 'editor:index', true)"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

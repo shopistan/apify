@@ -1,0 +1,126 @@
+<div class="container card app-content shadow ng-scope" ng-init="new_init()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">Create Action</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <!-- <button class="btn btn-outline-primary">New Webpeer App</button> -->
+    </div>
+  </div>
+  <div class="card-body">
+    <form name="form" class="ng-pristine ng-invalid ng-invalid-required">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Title</b><span class="text-danger small ng-hide" ng-show="form.name.$touched && form.name.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">Ex.: "Create Ticket".</small>
+            </label>
+            <input type="text" class="form-control" name="name" ng-model="obj.name" required="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Description</b> <span class="text-danger small ng-hide" ng-show="form.description.$touched && form.description.$invalid">&nbsp;The
+                field is required.</span>
+              <br>
+              <small class="text-muted">Begin with "Creates", "Adds" or another action verb and end with a period.Ex. "Creates
+                a new ticket."</small>
+            </label>
+            <textarea name="description" class="form-control" ng-model="obj.description" rows="5" required=""></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Polling URL</b><span class="text-danger small ng-hide" ng-show="form.url.$touched && form.url.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">A URL to POST to. Can use auth and action fields (<code>{{"{{field_key}\}"}}</code>).
+              </small>
+            </label>
+            <input type="text" class="form-control" name="url" ng-model="obj.url" required="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Action Fields</b><span class="text-danger small ng-hide" ng-show="form.fields.$touched && form.fields.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">Action Fields are the fields users will map data into.
+              </small>
+            </label>
+
+            <div style="overflow-y:auto" ng-if="obj.fields.length>0">
+              <table class="table table-curved">
+                <thead class="bg-secondary">
+                  <tr>
+                    <th>Name</th>
+                    <th>Key</th>
+                    <th>Help Text</th>
+                    <th>Required</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+                  <tr ng-repeat="f in obj.fields">
+                    <td><input type="text" name="fields[]" class="form-control" placeholder="Field Name" ng-model="f.name"
+                        required></td>
+                    <td><input type="text" name="fields[]" class="form-control" placeholder="field__key" ng-model="f.key"
+                        required></td>
+                    <td><input type="text" name="fields[]" class="form-control" placeholder="Helps user understand what it does"
+                        ng-model="f.helpText" required></td>
+                    <td>
+                      <label class="custom-toggle" style="margin: 10px 0;">
+                        <input type="checkbox" ng-model="f.required">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                      </label>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-outline-danger btn-sm" style="margin: 10px 0;" ng-click="delete_action_field($index)"><i
+                          class="fa fa-trash"></i></button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <button type="button" class="btn btn-outline-primary btn-sm pull-right" ng-click="create_action_field()"><i
+                    class="fa fa-plus-circle"></i>
+                  Create Action Field
+                </button>
+                <br>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <button type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="new_action(obj)" disabled="disabled">Create</button>
+        <button type="button" class="btn btn-outline-warning" ui-sref="developer:development({id:appID})">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

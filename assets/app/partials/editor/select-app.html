@@ -1,0 +1,66 @@
+<div class="row">
+  <div
+    class="col-sm-4 header-settings"
+    ng-include="'./app/partials/editor/header.html'"
+  ></div>
+  <div class="col-sm-8" ng-init="get_all_apps()">
+    <div class="container">
+      <div class="shadow card app-content ng-scope">
+        <div class="justify-content-center card-header">
+          <div class="col-sm-6"><h5>Choose an app</h5></div>
+          <div class="col-sm-6 text-lg-right align-self-lg-center">
+            <!--
+              <button class="btn btn-outline-primary" ui-sref="developer:new_app">New Webpeer App</button>
+            -->
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="container">
+              <div class="cc-selector">
+                <div class="row">
+                  <div class="col-3 center-app" ng-repeat="a in apps">
+                    <input
+                      id="{{a.id}}"
+                      type="radio"
+                      name="credit-card"
+                      ng-click="changeApp(a)"
+                      value="{{a.id}}"
+                      ng-model="selectedApp"
+                    />
+                    <label class="drinkcard-cc" for="{{a.id}}">
+                      <div
+                        class=" back-img"
+                        style="background-image: url({{a.image}}); height: 80px; width:80px; padding:3px;"
+                      ></div>
+                      <strong class="center-app">{{ a.name }}</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <hr />
+            <button
+              ng-if="type=='trigger'"
+              class="btn btn-outline-primary btn-sm pull-right"
+              ng-disabled="continueAllow==false"
+              ng-click="continue(obj, 'editor:trigger:method')"
+            >
+              Continue
+            </button>
+            <button
+              ng-if="type=='action'"
+              class="btn btn-outline-primary btn-sm pull-right"
+              ng-disabled="continueAllow==false"
+              ng-click="continue(obj, 'editor:action:method')"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

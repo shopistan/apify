@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apify</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <link href="/assets/img/brand/favicon.png" rel="icon" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <link href="/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link
+      href="/assets/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      href="/assets/css/argon.css?v=1.0.1"
+      rel="stylesheet"
+    />
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/popper/popper.min.js"></script>
+    <script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/vendor/headroom/headroom.min.js"></script>
+    <!-- Optional JS -->
+    <script src="/assets/vendor/onscreen/onscreen.min.js"></script>
+    <script src="/assets/vendor/nouislider/js/nouislider.min.js"></script>
+    <script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <!-- Argon JS -->
+    <script src="/assets/js/argon.js?v=1.0.1"></script>
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+    <%- body %>
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+    <!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <script src="/components/select2/dist/js/select2.min.js"></script>
+    <script src="/components/angular/angular.min.js"></script>
+    <script src="/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/components/toastr/toastr.js"></script>
+    <script src="/components/ngstorage/ngStorage.min.js"></script>
+    <script src="/components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="/components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/routes.js"></script>
+    <script src="/app/controllers/action.controller.js"></script>
+    <script src="/app/controllers/app.controller.js"></script>
+    <script src="/app/controllers/auth.controller.js"></script>
+    <script src="/app/controllers/blank.controller.js"></script>
+    <script src="/app/controllers/developer.controller.js"></script>
+    <script src="/app/controllers/editor.controller.js"></script>
+    <script src="/app/controllers/home.controller.js"></script>
+    <script src="/app/controllers/oauth2.controller.js"></script>
+    <script src="/app/controllers/trigger.controller.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/mapping-box-select2.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

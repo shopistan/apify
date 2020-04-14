@@ -1,0 +1,209 @@
+<script>
+  const baseURL = "<%= sails.config.custom.baseUrl %>";
+</script>
+
+<link href="/components/toastr/toastr.css" rel="stylesheet" />
+<link href="/components/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link
+  href="/components/angular-loading-bar/build/loading-bar.min.css"
+  rel="stylesheet"
+/>
+<!-- LOAD ROUTER VIEW -->
+<div ng-app="webpeer" ng-controller="homeCtrl">
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <header class="header-global">
+    <nav
+      id="navbar-main"
+      class="navbar navbar-main navbar-expand-lg navbar-dark navbar-light "
+      style="background-color:#172b4d; padding-top:.3rem; padding-bottom:.3rem;     box-shadow: 0 1px 10px rgba(130, 130, 134, .1);
+    "
+    >
+      <div
+        class="col-12"
+        style="
+      display: flex;
+      align-items:  center;
+      justify-content: space-between;
+  "
+      >
+        <a class="navbar-brand mr-lg-5" ui-sref="home">
+          <img src="/assets/img/brand/white.png" /> &nbsp;
+          <strong style="font-size:20px; color:#f2f2f2"><tt>apify</tt></strong>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar_global"
+          aria-controls="navbar_global"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a ui-sref="home">
+                  <img src="/assets/img/brand/blue.png" />
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button
+                  type="button"
+                  class="navbar-toggler"
+                  data-toggle="collapse"
+                  data-target="#navbar_global"
+                  aria-controls="navbar_global"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" ui-sref="home">
+                <i class="ni ni-chart-bar-32 d-lg-none"></i>
+                <span class="nav-link-inner--text">Home</span>
+              </a>
+            </li>
+          </ul>
+          <!-- APP NAV -->
+          <ul
+            class="navbar-nav align-items-lg-center ml-lg-auto"
+            ng-if="isAuth"
+          >
+            <li class="nav-item">
+              <a class="nav-link " ui-sref="user:peers">
+                <i class="ni ni-atom d-lg-none"></i>
+                <span class="nav-link-inner--text login-btn">My Flows</span>
+              </a>
+            </li>
+            <li class="nav-item d-lg-block">
+              <a
+                ng-click="make_peer()"
+                class="btn btn-warning bg-gradient-danger"
+              >
+                <!-- <span class="btn-inner--icon"><i class="fa fa-flash"></i></span> -->
+                <span class="nav-link-inner--text text-white">Make a flow</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown ">
+              <a
+                href="javascript:void(0)"
+                class="nav-link nav-link-icon"
+                data-toggle="dropdown"
+                role="button"
+                aria-expanded="false"
+                data-toggle="tooltip"
+              >
+                <i class="fa fa-cog fa-lg"></i>
+                <span class="nav-link-inner--text d-lg-none">More</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-xl">
+                <div class="dropdown-menu-inner">
+                  <a
+                    ui-sref="developer:apps"
+                    class="media d-flex align-items-center"
+                  >
+                    <div
+                      class="icon icon-shape bg-gradient-primary rounded-circle text-white"
+                    >
+                      <i class="ni ni-vector"></i>
+                    </div>
+                    <div class="media-body ml-3">
+                      <h5 class="heading text-primary mb-md-1">Developers</h5>
+                      <p class="description d-none d-md-inline-block mb-0">
+                        Bring your own apps to apify platform & automate
+                        workflows
+                      </p>
+                    </div>
+                  </a>
+                  <a
+                    href="javascript:void(0)"
+                    ng-click="logout()"
+                    class="media d-flex align-items-center"
+                  >
+                    <div
+                      class="icon icon-shape bg-gradient-danger rounded-circle text-white"
+                    >
+                      <i class="ni ni-button-power"></i>
+                    </div>
+                    <div class="media-body ml-3">
+                      <h5 class="heading text-danger mb-md-1">Logout</h5>
+                      <p class="description d-none d-md-inline-block mb-0">
+                        {{ user.email }} -
+                        <span class="badge badge-pill badge-success"
+                          >Free Plan</span
+                        >
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- AUTH NAV -->
+          <ul
+            class="navbar-nav align-items-lg-center ml-lg-auto"
+            ng-if="!isAuth"
+          >
+            <li class="nav-item">
+              <a class="nav-link " ui-sref="auth:login">
+                <i class="ni ni-chart-bar-32 d-lg-none"></i>
+                <span class="nav-link-inner--text login-btn">Log In</span>
+              </a>
+            </li>
+            <li class="nav-item d-lg-block">
+              <a ui-sref="auth:signup" class="btn btn-warning">
+                <span class="nav-link-inner--text text-white">Sign up</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main style="min-height: 80vh;">
+    <ui-view></ui-view>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+          <div class="copyright">
+            <h5 class="text-primary font-weight-light mb-2">
+              Thank you for supporting us!
+            </h5>
+            Automating business workflows © 2018
+            <a href="javascript:void(0)">Apify</a>.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav nav-footer justify-content-end">
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a ui-sref="developer:apps" class="nav-link"
+                >Developer Platform
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

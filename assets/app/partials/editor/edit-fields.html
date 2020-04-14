@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-sm-4 header-settings" ng-include="'./app/partials/editor/header.html'"></div>
+  <div class="col-sm-8">
+    <div class="container">
+      <div class="shadow card app-content ng-scope" ng-init="edit_options_init()">
+        <div class="justify-content-center card-header">
+          <div class="col-sm-6">
+            <h5>Edit Fields
+            </h5>
+          </div>
+          <div class="col-sm-6 text-lg-right align-self-lg-center">
+            <!-- <button class="btn btn-outline-primary" ui-sref="developer:new_app">New Webpeer App</button> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="row" name="form">
+            <h4 class="col-12 heading"><span class=" badge badge-primary">Original URL</span> <code>{{url}}</code></h4>
+            <!-- <h4 class="col-12 heading"><span class=" badge badge-success">Mapped URL</span> <code>{{urlParse}}</code></h4> -->
+            <!-- <hr> -->
+            <div class="col-sm-12" ng-repeat="i in inputs">
+              <div class="form-group">
+                <label>
+                  <strong class="">{{prettyName(i)}}</strong><span class="text-danger small ng-hide" ng-show="form.field_{{i}}.$invalid">&nbsp;(required)
+                  </span>
+                </label>
+                <input type="text" class="form-control" name="field_{{i}}" required ng-model="optValues[i]" required>
+              </div>
+            </div>
+            <br>
+            <br>
+            <!-- mapping inputs -->
+
+            <div class="col-sm-12" ng-if="type=='action'" ng-repeat="m in obj.actionMapping">
+              <label>
+                <strong class="">{{m.name}}</strong><span class="text-danger small ng-hide" ng-show="form.field_{{m.key}}.$invalid">&nbsp;(required)
+                </span><br>
+                <small class="text-muted">{{m.helpText}}</small>
+              </label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" name="field_{{m.key}}" id="field_{{m.key}}" ng-model="m.value"
+                  ng-required="m.required" autocomplete="no">
+                <div class="input-group-append">
+                  <button class="btn" ng-click="makeSelectBox('field_'+m.key, m)" style="border-color: #cad1d7; background: #f9f9f9"
+                    type="button">
+                    <img src="/images/insert-fields.png" style="height:20px" alt="" srcset="">
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <div class="container">
+            <hr>
+            <button ng-if="type=='trigger'" class="btn btn-outline-primary btn-sm pull-right " ng-disabled="form.$invalid"
+              ng-click="saveMapping(optValues, obj,
+                      'editor:trigger:sample') ">Continue</button>
+
+            <button ng-if="type=='action'" class="btn btn-outline-primary btn-sm pull-right " ng-disabled="form.$invalid"
+              ng-click="continue(obj,
+                      'editor:action:sample') ">Continue</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

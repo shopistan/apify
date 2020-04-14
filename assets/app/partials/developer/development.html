@@ -1,0 +1,194 @@
+<div class="container app-content" ng-init="get_app()">
+  <h1 class="display-4" id="content">
+    <a ui-sref="developer:apps">My Apps</a> <i class="fa fa-angle-right"></i>
+    {{ obj.name }}
+    <button
+      class="btn btn-sm btn-outline-primary"
+      ui-sref="developer:edit_app({id: obj.unique})"
+    >
+      <i class="fa fa-pencil"></i>
+    </button>
+  </h1>
+  <td>
+    <p class="text-muted">
+      <span class="badge badge-pill badge-success">public</span> —
+      {{ obj.description }}
+    </p>
+  </td>
+</div>
+
+<div class="container card app-content shadow ng-scope">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-12">
+      <h5>
+        Authentication
+        <small class="text-muted"
+          >(Required access tokens via OAuth 2.0.)</small
+        >
+      </h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="">
+      Your OAuth redirect URI is
+      <code class="text-primary"
+        >{{ base_url }}/token/oauth/redirect/{{ obj.unique }}</code
+      >
+    </p>
+    <div style="overflow-y:auto">
+      <table class="table table-curved" ng-if="obj.authentications.length!=0">
+        <thead class="bg-secondary">
+          <tr>
+            <th>Label</th>
+            <th>Key</th>
+            <th>Required</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="auth in obj.authentications">
+            <td>{{ auth.type }}</td>
+            <td><code>access_token</code></td>
+            <td><span class="badge badge-pill badge-success">true</span></td>
+            <td>
+              <button
+                class="btn btn-sm btn-primary"
+                ui-sref="oauth2:edit({id:obj.unique, auth_id: auth.unique})"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-secondary"
+                ng-controller="oauth2Ctrl"
+                ng-click="delete_oauth2(auth.unique)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      ng-if="obj.authentications.length==0"
+      ui-sref="oauth2:new({id:obj.unique})"
+    >
+      <i class="fa fa-plus-circle"></i> Add Authentication
+    </button>
+  </div>
+</div>
+
+<div
+  class="container card app-content shadow ng-scope"
+  ng-init="new_app_init()"
+>
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-12">
+      <h5>
+        Triggers <small class="text-muted">(Bringing data into apify.)</small>
+      </h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-y:auto">
+      <table class="table table-curved" ng-if="obj.triggers.length!=0">
+        <thead class="bg-secondary">
+          <tr>
+            <th>Label</th>
+            <th>Source</th>
+            <th>Visible</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="trigger in obj.triggers">
+            <td>{{ trigger.name }}</td>
+            <td>Polling</td>
+            <td><span class="badge badge-pill badge-success">true</span></td>
+            <td>
+              <button
+                class="btn btn-sm btn-primary"
+                ui-sref="trigger:edit({id:obj.unique, trigger_id: trigger.unique})"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-secondary"
+                ng-controller="triggerCtrl"
+                ng-click="delete_trigger(trigger.unique)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      ui-sref="trigger:new({id:obj.unique})"
+    >
+      <i class="fa fa-plus-circle"></i> Add new trigger
+    </button>
+  </div>
+</div>
+
+<div
+  class="container card app-content shadow ng-scope"
+  ng-init="new_app_init()"
+>
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-12">
+      <h5>
+        Actions <small class="text-muted">(Apify sending data out.)</small>
+      </h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-y:auto">
+      <table class="table table-curved" ng-if="obj.actions.length!=0">
+        <thead class="bg-secondary">
+          <tr>
+            <th>Label</th>
+            <th>Fields</th>
+            <th>Visible</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="action in obj.actions">
+            <td>{{ action.name }}</td>
+            <td>
+              <span class="badge badge-pill badge-success">{{
+                action.fields.length
+              }}</span>
+            </td>
+            <td><span class="badge badge-pill badge-success">true</span></td>
+            <td>
+              <button
+                class="btn btn-sm btn-primary"
+                ui-sref="action:edit({id:obj.unique, action_id: action.unique})"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-secondary"
+                ng-controller="actionCtrl"
+                ng-click="delete_action(action.unique)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      ui-sref="action:new({id:obj.unique})"
+    >
+      <i class="fa fa-plus-circle"></i> Add new action
+    </button>
+  </div>
+</div>

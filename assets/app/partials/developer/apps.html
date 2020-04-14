@@ -1,0 +1,49 @@
+<div class="container card app-content shadow ng-scope" ng-init="get_all()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">My Apps</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <button class="btn btn-outline-primary" ui-sref="developer:new_app">
+        New Apify App
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-y:auto">
+      <table class="table table-curved ">
+        <thead class="bg-secondary">
+          <tr>
+            <th style="width: 60%">Title</th>
+            <th style="width: 20%">Visibility</th>
+            <th style="width: 30%">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="app in apps">
+            <td>
+              <a ui-sref="developer:development({id:app.unique})">{{
+                app.name
+              }}</a>
+            </td>
+            <td><span class="badge badge-primary">Public</span></td>
+            <td>
+              <button
+                class="btn btn-sm btn-primary"
+                ui-sref="developer:development({id: app.unique})"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-secondary"
+                ng-click="deleteApp(app.unique)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

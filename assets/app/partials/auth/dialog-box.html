@@ -1,0 +1,44 @@
+<div class="container card app-content shadow ng-scope" ng-init="init_auth()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">Authentication</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <!-- <button class="btn btn-outline-primary" ui-sref="developer:new_app">New Webpeer App</button> -->
+    </div>
+  </div>
+  <div class="card-body">
+    <form name="form" style="overflow-y:auto">
+      <div class="container">
+        <div class="row">
+          <div class="col-12"><strong>URL:</strong> <code>{{auth.data.authorizationUrl}}</code></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12" ng-repeat="i in inputs">
+            <div class="form-group">
+              <label>
+                <strong class="">{{prettyName(i)}}</strong><span class="text-danger small ng-hide" ng-show="form.field_{{i}}.$invalid">&nbsp;(required)
+                </span>
+              </label>
+              <!-- <label>
+                  <strong class="">{{prettyName(i)}}</strong><span class="text-danger small ng-hide" ng-show="form.field_{{i}}.$touched && form.field_{{i}}.$invalid">&nbsp;The
+                    field is required.
+                  </span>
+              </label> -->
+              <input type="text" class="form-control" name="{{i}}" required ng-model="obj[i]" required>
+            </div>
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <button class="btn btn-outline-primary" ng-click="continueAuth(obj)" ng-disabled="form.$invalid">
+            Continue
+          </button>
+        </div>
+
+      </div>
+  </div>
+</div>
+</div>

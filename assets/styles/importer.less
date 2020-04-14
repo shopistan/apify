@@ -1,0 +1,282 @@
+/**
+ * importer.less
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from LESS to CSS.  Unlike CSS files, LESS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * For more information see:
+ *   https://sailsjs.com/anatomy/assets/styles/importer-less
+ */
+
+// For example:
+//
+// @import 'variables/colors.less';
+// @import 'mixins/foo.less';
+// @import 'mixins/bar.less';
+// @import 'mixins/baz.less';
+//
+// @import 'styleguide.less';
+// @import 'pages/login.less';
+// @import 'pages/signup.less';
+//
+// etc.
+#loading-bar .bar {
+  background: #2ecc71 !important;
+}
+div#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999999999;
+  width: 100%;
+  height: 100%;
+  background: #fff !important;
+  /* background:#fff url(../images/load2.gif) no-repeat center center !important; */
+  /* display: none; */
+}
+.loader {
+  border: 6px solid #f3f3f4; /* Light grey */
+  border-top: 6px solid #172b4d; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dropdown-menu {
+  right: 0 !important;
+  left: auto;
+}
+.navbar-nav .dropdown-menu:before {
+  right: 20px !important;
+  left: auto;
+}
+.app-content {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.card-header {
+  padding: 0.5rem 0.5rem;
+}
+code {
+  background-color: #fff;
+  border: 1px solid #eee;
+  font-size: 13px;
+  line-height: 1em;
+  padding: 2px 5px;
+  display: inline-block;
+  font-family: "Consolas", "Liberation Mono", Courier, monospace;
+  text-transform: none;
+}
+.table th,
+.table td {
+  padding: 0.75em;
+}
+.table td {
+  background: #f8fafa;
+}
+.table-curved {
+  border-radius: 6px;
+  border-left: 0px;
+}
+.table-curved th {
+  border-top: none;
+}
+.table-curved th:first-child {
+  border-radius: 6px 0 0 0;
+}
+.table-curved th:last-child {
+  border-radius: 0 6px 0 0;
+}
+.table-curved th:only-child {
+  border-radius: 6px 6px 0 0;
+}
+.table-curved tr:last-child td:first-child {
+  border-radius: 0 0 0 6px;
+}
+.table-curved tr:last-child td:last-child {
+  border-radius: 0 0 6px 0;
+}
+.back-img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.activex strong,
+.activex i {
+  color: #499df3 !important;
+}
+.activex {
+  background: #f0f7fe !important;
+  border-radius: 20px;
+}
+.side-nav {
+  margin: 7px 0 !important;
+  padding: 3px 10px !important;
+}
+.header-settings {
+  min-height: 80vh !important;
+  border-right: 2px solid #ecf0f1 !important;
+  background: #f4f5f796 !important;
+  overflow-x: auto !important;
+}
+
+.cc-selector input {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.visa {
+  background-image: url(http://i.imgur.com/lXzJ1eB.png);
+}
+.mastercard {
+  background-image: url(http://i.imgur.com/SJbRQF7.png);
+}
+
+.cc-selector input:active + .drinkcard-cc {
+  opacity: 0.9;
+}
+.cc-selector input:checked + .drinkcard-cc {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+.drinkcard-cc {
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  filter: brightness(1.8) grayscale(1) opacity(0.7);
+}
+.drinkcard-cc:hover {
+  -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+/* Extras */
+a:visited {
+  color: #888;
+}
+a {
+  color: #444;
+  text-decoration: none;
+}
+p {
+  margin-bottom: 0.3em;
+}
+
+.app-select {
+  width: 100%;
+}
+
+.center-app {
+  display: block;
+  text-align: -webkit-center;
+}
+.back-img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.mid:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 2px solid #bdc3c7;
+  transform: translate(-50%);
+}
+.side-nav:hover {
+  background: #f0f7fe;
+  border-radius: 20px;
+}
+
+.side-nav[disabled="disabled"]:hover {
+  background: none;
+  border-radius: 20px;
+}
+
+.side-nav[disabled="disabled"] strong,
+.side-nav[disabled="disabled"] i {
+  color: #b9b9b9 !important;
+}
+
+.ml-3 strong {
+  font-weight: 400 !important;
+}
+.select2-container .select2-container--default .select2-container--open {
+  top: 125px !important;
+}
+.select2-results__option {
+  padding: 15px 10px;
+  border-bottom: 1px solid #e2e2e2;
+  background-color: #fafafa;
+}
+.select2-container--default
+  .select2-results__option--highlighted[aria-selected] {
+  background-color: #f7f8f8 !important;
+  color: #000;
+}
+.select2-search__field {
+  border-radius: 3px;
+  border: none !important;
+  // background: #f7f8f8!important;
+  padding: 10px 5px !important;
+}
+.select2-search__field:focus {
+  outline: none !important;
+}
+.select2-dropdown {
+  border: 1px solid #ccc !important;
+  border-radius: 3px;
+  margin-top: -25px;
+}
+.select2-results__group {
+  background-color: #fff;
+  border-top: 2px solid #eee;
+  color: #364147;
+  padding: 15px 10px !important;
+  font-weight: 600;
+}
+.select2-results__group .fa {
+  padding-right: 10px;
+  color: #969ea2;
+}
+.selection {
+  display: none !important;
+}
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 350px !important;
+  overflow-y: auto;
+}
+.select2-search--dropdown {
+  border-bottom: 2px solid #e2e2e2;
+}

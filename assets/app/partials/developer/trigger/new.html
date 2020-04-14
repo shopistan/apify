@@ -1,0 +1,65 @@
+<div class="container card app-content shadow ng-scope" ng-init="new_init()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">Create Trigger</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <!-- <button class="btn btn-outline-primary">New Webpeer App</button> -->
+    </div>
+  </div>
+  <div class="card-body">
+    <form name="form" class="ng-pristine ng-invalid ng-invalid-required">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Title</b><span class="text-danger small ng-hide" ng-show="form.name.$touched && form.name.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">Ex.: "New Ticket"</small>
+            </label>
+            <input type="text" class="form-control" name="name" ng-model="obj.name" required="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Description</b> <span class="text-danger small ng-hide" ng-show="form.description.$touched && form.description.$invalid">&nbsp;The
+                field is required.</span>
+              <br>
+              <small class="text-muted">Begin with "Triggers when..." and end with a period. Ex: "Triggers when a new ticket
+                is created."</small>
+            </label>
+            <textarea name="description" class="form-control" ng-model="obj.description" rows="5" required=""></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Polling URL</b><span class="text-danger small ng-hide" ng-show="form.url.$touched && form.url.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">A URL to GET, which returns a reverse-chronologically ordered list. Also used by
+                hooks to get sample data for the editor. Do not return dummy data and make sure hooks and polling use the
+                same fields. Can use auth and trigger fields (<code>{{"{{field_key}\}"}}</code>). </small>
+            </label>
+            <input type="text" class="form-control" name="url" ng-model="obj.url" required="">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <button type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="new_trigger(obj)" disabled="disabled">Create</button>
+        <button type="button" class="btn btn-outline-warning" ui-sref="developer:development({id:appID})">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

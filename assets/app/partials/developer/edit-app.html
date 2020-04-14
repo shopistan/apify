@@ -1,0 +1,68 @@
+<div class="container card app-content shadow ng-scope" ng-init="edit_app_init()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">Edit General Info</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <!-- <button class="btn btn-outline-primary">New Webpeer App</button> -->
+    </div>
+  </div>
+  <div class="card-body">
+    <form name="form" class="ng-pristine ng-invalid ng-invalid-required">
+      <div class="row">
+
+        <div class="col-md-2 center-app">
+          <div class="back-img" style="background-image: url({{obj.image}}); height: 80px; width:80px; padding:3px; border:1px solid #eee; border-radius: 4px"></div>
+        </div>
+
+        <div class="col-md-10 form-group">
+          <label><b>Change Icon</b></label>
+          <input type="file" class="form-control btn btn-outline-secondary" id="image" name="icon" onchange="angular.element(this).scope().uploadedFile(this)">
+          <div id="prog-div" style="display: none; margin-top: 10px;" class="form-group">
+            <progress id="prog" class="" value="0" max="100" style="width: 100%;"></progress>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Title</b><span class="text-danger small ng-hide" ng-show="form.name.$touched &amp;&amp; form.name.$invalid">&nbsp;The
+                field is required.
+              </span>
+              <br>
+              <small class="text-muted">A readable title your app is known for.</small>
+            </label>
+            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="name" ng-model="obj.name" required="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Description</b> <span class="text-danger small ng-hide" ng-show="form.description.$touched &amp;&amp; form.description.$invalid">&nbsp;The
+                field is required.</span>
+              <br>
+              <small class="text-muted">A short summary describing your app. e.g. "Trello is a team collaboration tool
+                that
+                lets you organize anything and everything to keep your projects on task."</small>
+            </label>
+            <textarea name="description" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              ng-model="obj.description" rows="5" required=""></textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <button type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="edit_app(obj)" disabled="disabled">Edit</button>
+        <button type="button" class="btn btn-outline-warning" ui-sref="developer:development({id: obj.unique})" href="#!/developer/apps">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

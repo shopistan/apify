@@ -1,0 +1,284 @@
+<div class="container card app-content shadow ng-scope" ng-init="new_init()">
+  <div class="row justify-content-center card-header">
+    <div class="col-sm-6">
+      <h1 class="display-4">Setup Authentication</h1>
+    </div>
+    <div class="col-sm-6 text-lg-right align-self-lg-center">
+      <!-- <button class="btn btn-outline-primary">New Webpeer App</button> -->
+    </div>
+  </div>
+  <div class="card-body">
+    <form name="form" class="ng-pristine ng-invalid ng-invalid-required">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Connection Label</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.connectionLabel.$touched && form.connectionLabel.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >When users authenticate for the first time a new Connection
+                will be created for use in the Flow editor and in the "Connected
+                Accounts" section of Apify. Use fields returned by the test
+                trigger or from authentication like
+                <code>{{ "{{user}\} @ {{team}\}" }}</code> to create a label so
+                that users can easily tell what account is associated with a
+                connection.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="connectionLabel"
+              ng-model="obj.connectionLabel"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Client ID</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.clientId.$touched && form.clientId.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >Also known as Consumer Key or API Key.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="clientId"
+              ng-model="obj.clientId"
+              required=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Client Secret</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.clientSecret.$touched &amp;&amp; form.clientSecret.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >Also known as Consumer Secret or API Secret.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="clientSecret"
+              ng-model="obj.clientSecret"
+              required=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Authorization URL</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.authorizationUrl.$touched &amp;&amp; form.authorizationUrl.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >Where we redirect users when they attempt to connect to Apify.
+                We will construct and append the querystring for you.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="authorizationUrl"
+              ng-model="obj.authorizationUrl"
+              required=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Access Token URL</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.accessTokenUrl.$touched &amp;&amp; form.accessTokenUrl.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >Where we POST the approval <code>code</code> when a user is
+                redirected back to Apify. Expects <code>access_token</code> in
+                the response.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="accessTokenUrl"
+              ng-model="obj.accessTokenUrl"
+              required=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Scope</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.scope.$touched &amp;&amp; form.scope.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >If you want to limit Apify's access to your service, you can
+                define the OAuth scope using a comma or space separated list of
+                values.</small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="scope"
+              ng-model="obj.scope"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>
+              <b>Auth Placement</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.authPlacement.$touched &amp;&amp; form.authPlacement.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >How should we send the Access Token (for OAuth V2) or the
+                fields mapped via Auth Mapping (for Session Auth)? Access Tokens
+                will be sent as
+                <code>Authorization: Bearer {{ "{{access_token}\}" }}</code>
+                header and/or
+                <code>access_token={{ "{{access_token}\}" }}</code>
+                querystring.</small
+              >
+            </label>
+            <select
+              name="authPlacement"
+              class="form-control"
+              ng-model="obj.authPlacement"
+              ng-change="tokenMapping(obj.authPlacement)"
+              required
+            >
+              <option value="header">Header</option>
+              <option value="query">Query String</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>
+              <b>Key</b
+              ><span
+                class="text-danger small ng-hide"
+                ng-show="form.mapping_key.$touched &amp;&amp; form.mapping_key.$invalid"
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted"
+                >Custom key to map <code>access_token</code> i.e.
+                <code>Authorization</code></small
+              >
+            </label>
+            <input
+              type="text"
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+              name="mapping_key"
+              ng-model="obj.mapping.key"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="form-group ">
+            <label>
+              <b>Value</b
+              ><span
+                class="text-danger small ng-hide "
+                ng-show="form.mapping_value.$touched &amp;&amp; form.mapping_value.$invalid "
+                >&nbsp;The field is required.
+              </span>
+              <br />
+              <small class="text-muted "
+                >Custom mapping to send <code>access_token</code> i.e.
+                <code>Bearer {{ "{{access_token}\} " }}</code></small
+              >
+            </label>
+            <input
+              type="text "
+              class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required
+              "
+              name="mapping_value"
+              ng-model="obj.mapping.value"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button
+          type="button"
+          class="btn btn-primary"
+          ng-disabled="form.$invalid"
+          ng-click="new_oauth2(obj)"
+          disabled="disabled"
+        >
+          Create
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-warning"
+          ui-sref="developer:development({id:appID})"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

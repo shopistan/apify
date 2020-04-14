@@ -1,0 +1,28 @@
+<div class="row" ng-init="init()">
+  <div class="col-sm-4 header-settings" ng-include="'./app/partials/editor/header.html'"></div>
+  <div class="col-sm-8" ng-init="get_all_apps()">
+    <div class="container">
+      <div class="shadow card app-content ng-scope" ng-init="new_app_init()">
+        <div class="justify-content-center card-header">
+          <div class="col-sm-6">
+            <h5>Choose an app
+            </h5>
+          </div>
+          <div class="col-sm-6 text-lg-right align-self-lg-center">
+            <!-- <button class="btn btn-outline-primary" ui-sref="developer:new_app">New Webpeer App</button> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+
+          </div>
+          <div class="container">
+            <hr>
+            <button class="btn btn-outline-primary btn-sm pull-right" ng-click="continue(obj)">Continue</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
